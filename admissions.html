@@ -53,6 +53,27 @@
           <i class="fa-solid fa-magnifying-glass"></i> Check Result
         </a>
       </div>
+    
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu(event)" aria-label="Toggle Mobile Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Slide-Out Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="toppers.html" class="mobile-nav-link"><i class="fa-solid fa-trophy"></i> Toppers</a>
+        <a href="results.html" class="mobile-nav-link"><i class="fa-solid fa-square-poll-vertical"></i> Results</a>
+        <a href="gallery.html" class="mobile-nav-link"><i class="fa-solid fa-images"></i> Gallery</a>
+        <a href="academics.html" class="mobile-nav-link"><i class="fa-solid fa-book-open"></i> Academics</a>
+        <a href="admissions.html" class="mobile-nav-link"><i class="fa-solid fa-graduation-cap"></i> Admissions</a>
+        <a href="contact.html" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </div>
+      <div class="mobile-nav-actions">
+        <a href="results.html" class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass"></i> Check Result</a>
+        <a href="admissions.html" class="btn btn-primary"><i class="fa-solid fa-graduation-cap"></i> Admission 2026</a>
+      </div>
     </div>
   </header>
 
@@ -60,7 +81,7 @@
   <!-- Admission Form Section -->
   <section class="section">
     <div class="container" style="max-width: 850px;">
-      <div class="glass-card" style="padding: 3rem; border: 1px solid var(--border-gold);">
+      <div class="glass-card admission-card-wrap">
         <div style="text-align: center; margin-bottom: 2.5rem;">
           <span class="section-tag">Session 2026-27 Application</span>
           <h2 class="section-title">Online Admission Inquiry Form</h2>
@@ -68,18 +89,18 @@
         </div>
 
         <form id="admissionFormPage" onsubmit="event.preventDefault(); alert('Application Submitted Successfully! Admission cell will call your provided phone number within 24 hours.');">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem;">
+          <div class="form-grid-2">
             <div>
               <label style="font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; display: block; color: var(--accent-gold);">Student Full Name *</label>
               <input type="text" required class="search-input" placeholder="e.g. Muhammad Ali" style="padding-left: 1.2rem;">
             </div>
             <div>
               <label style="font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; display: block; color: var(--accent-gold);">Father's / Guardian Name *</label>
-              <input type="text" required class="search-input" placeholder="e.g. Tariq Mahmood" style="padding-left: 1.2rem;">
+              <input type="text" required class="search-input" placeholder="e.g. Prof. Abdul Wadood" style="padding-left: 1.2rem;">
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem;">
+          <div class="form-grid-2">
             <div>
               <label style="font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; display: block; color: var(--accent-gold);">Select Grade / Class *</label>
               <select required class="search-input" style="padding-left: 1.2rem; border-radius: 999px;">
@@ -105,7 +126,7 @@
             <input type="text" placeholder="e.g. Army Public School - 94% Marks" class="search-input" style="padding-left: 1.2rem;">
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.95rem; font-size: 1rem;">
             <i class="fa-solid fa-paper-plane"></i> Submit Application Form
           </button>
         </form>

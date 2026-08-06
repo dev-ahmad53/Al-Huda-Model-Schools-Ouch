@@ -13,6 +13,12 @@ const DEFAULT_SCHOOL_DATA = {
       passPercentage: "99.4%",
       boardPositions: "45+",
       expertFaculty: "120+"
+    },
+    principal: {
+      name: "Prof. Abdul Wadood",
+      title: "Principal & Academic Director",
+      photo: "images/principal.jpeg",
+      message: "At Al Khuda Model School & College, our mission is to foster an environment where academic rigor meets character development. We strive to empower every student from Nursery to 2nd Year with critical thinking, ethical values, and technological skills necessary to excel in the modern world."
     }
   },
 

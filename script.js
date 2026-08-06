@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize UI safely
   try { initTheme(); } catch(e) { console.error(e); }
+  try { initMobileMenu(); } catch(e) { console.error(e); }
   try { highlightActiveNavLink(); } catch(e) { console.error(e); }
   try { renderOverallToppersGrid(); } catch(e) { console.error(e); }
   try { renderHomeToppersSlider(); } catch(e) { console.error(e); }
@@ -64,13 +65,59 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const pathStr = (window.location && window.location.pathname) ? window.location.pathname : "";
       const currentPath = pathStr.split("/").pop() || "index.html";
-      document.querySelectorAll(".nav-link").forEach(link => {
+      document.querySelectorAll(".nav-link, .mobile-nav-link").forEach(link => {
         const linkHref = link.getAttribute("href");
         if (linkHref === currentPath) {
           link.classList.add("active");
         }
       });
     } catch(e) { console.error(e); }
+  }
+
+  window.toggleMobileMenu = function(e) {
+    if (e) {
+      if (e.stopPropagation) e.stopPropagation();
+    }
+    const mobileBtn = document.getElementById("mobileMenuBtn");
+    const mobileDrawer = document.getElementById("mobileNavDrawer");
+    if (!mobileDrawer) return;
+
+    const isActive = mobileDrawer.classList.toggle("active");
+
+    if (mobileBtn) {
+      mobileBtn.innerHTML = isActive 
+        ? '<i class="fa-solid fa-xmark"></i>' 
+        : '<i class="fa-solid fa-bars"></i>';
+    }
+  };
+
+  function initMobileMenu() {
+    const mobileBtn = document.getElementById("mobileMenuBtn");
+    const mobileDrawer = document.getElementById("mobileNavDrawer");
+
+    if (mobileBtn && mobileDrawer) {
+      mobileBtn.onclick = function(e) {
+        window.toggleMobileMenu(e);
+      };
+
+      document.addEventListener("click", (e) => {
+        // Ignore clicks inside mobile button or drawer
+        if (e.target.closest("#mobileMenuBtn") || e.target.closest("#mobileNavDrawer")) {
+          return;
+        }
+        if (mobileDrawer.classList.contains("active")) {
+          mobileDrawer.classList.remove("active");
+          if (mobileBtn) mobileBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
+      });
+
+      mobileDrawer.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          mobileDrawer.classList.remove("active");
+          if (mobileBtn) mobileBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        });
+      });
+    }
   }
 
   /* ==========================================================================
@@ -565,28 +612,30 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="meta-row"><span class="meta-label">Academic Status:</span> <span class="meta-val" style="color: #16a34a;">${student.status}</span></div>
         </div>
 
-        <table class="report-table">
-          <thead>
-            <tr>
-              <th style="width: 8%;">#</th>
-              <th style="width: 42%;">Subject Title</th>
-              <th style="width: 16%;">Total Marks</th>
-              <th style="width: 17%;">Marks Obtained</th>
-              <th style="width: 17%;">Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${student.subjects.map((sub, index) => `
+        <div class="table-responsive">
+          <table class="report-table">
+            <thead>
               <tr>
-                <td>${index + 1}</td>
-                <td style="font-weight: 600;">${sub.name}</td>
-                <td>${sub.total}</td>
-                <td style="font-weight: 700; color: #0f172a;">${sub.obtained}</td>
-                <td style="font-weight: 700; color: #d97706;">${((sub.obtained / sub.total) * 100).toFixed(1)}%</td>
+                <th style="width: 8%;">#</th>
+                <th style="width: 42%;">Subject Title</th>
+                <th style="width: 16%;">Total Marks</th>
+                <th style="width: 17%;">Marks Obtained</th>
+                <th style="width: 17%;">Percentage</th>
               </tr>
-            `).join("")}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              ${student.subjects.map((sub, index) => `
+                <tr>
+                  <td>${index + 1}</td>
+                  <td style="font-weight: 600;">${sub.name}</td>
+                  <td>${sub.total}</td>
+                  <td style="font-weight: 700; color: #0f172a;">${sub.obtained}</td>
+                  <td style="font-weight: 700; color: #d97706;">${((sub.obtained / sub.total) * 100).toFixed(1)}%</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
 
         <div class="report-summary-box">
           <div class="summary-item">

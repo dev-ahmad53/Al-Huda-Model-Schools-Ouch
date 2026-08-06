@@ -57,6 +57,27 @@
           <i class="fa-solid fa-graduation-cap"></i> Admission 2026
         </a>
       </div>
+    
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu(event)" aria-label="Toggle Mobile Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Slide-Out Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="toppers.html" class="mobile-nav-link"><i class="fa-solid fa-trophy"></i> Toppers</a>
+        <a href="results.html" class="mobile-nav-link"><i class="fa-solid fa-square-poll-vertical"></i> Results</a>
+        <a href="gallery.html" class="mobile-nav-link"><i class="fa-solid fa-images"></i> Gallery</a>
+        <a href="academics.html" class="mobile-nav-link"><i class="fa-solid fa-book-open"></i> Academics</a>
+        <a href="admissions.html" class="mobile-nav-link"><i class="fa-solid fa-graduation-cap"></i> Admissions</a>
+        <a href="contact.html" class="mobile-nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </div>
+      <div class="mobile-nav-actions">
+        <a href="results.html" class="btn btn-secondary"><i class="fa-solid fa-magnifying-glass"></i> Check Result</a>
+        <a href="admissions.html" class="btn btn-primary"><i class="fa-solid fa-graduation-cap"></i> Admission 2026</a>
+      </div>
     </div>
   </header>
 
@@ -119,18 +140,20 @@
   <!-- Principal Leadership Message Section -->
   <section class="section" style="background: #ffffff;">
     <div class="container">
-      <div class="hero-grid" style="align-items: center;">
-        <div>
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=600" alt="Principal" style="width: 100%; height: 380px; object-fit: cover; border-radius: var(--radius-lg); border: 1px solid var(--border-gold); box-shadow: var(--shadow-md);">
+      <div class="principal-layout">
+        <div class="principal-img-box">
+          <div class="principal-img-card">
+            <img src="images/principal.jpeg" alt="Prof. Abdul Wadood - Principal & Academic Director" class="principal-img">
+          </div>
         </div>
-        <div>
-          <span class="section-tag">Leadership Message</span>
+        <div class="principal-text-box">
+          <span class="section-tag"><i class="fa-solid fa-user-tie"></i> Leadership Message</span>
           <h2 class="section-title">Message from the Principal</h2>
-          <p style="font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8;">
+          <p class="principal-quote">
             "At Al Khuda Model School & College, our mission is to foster an environment where academic rigor meets character development. We strive to empower every student from Nursery to 2nd Year with critical thinking, ethical values, and technological skills necessary to excel in the modern world."
           </p>
-          <h4 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--accent-gold);">Prof. Dr. Tariq Mahmood</h4>
-          <p style="font-size: 0.85rem; color: var(--text-muted);">Principal & Academic Director</p>
+          <h4 class="principal-name">Prof. Abdul Wadood</h4>
+          <p class="principal-title">Principal & Academic Director</p>
         </div>
       </div>
     </div>
