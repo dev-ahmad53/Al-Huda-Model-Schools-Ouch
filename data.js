@@ -6,7 +6,7 @@ const DEFAULT_SCHOOL_DATA = {
     tagline: "Empowering Minds, Shaping Leaders, Excellence in Education",
     established: "1998",
     location: "Main Campus, Education City Road",
-    contactPhone: "+92 300 1234567",
+    contactPhone: "+92 348 5498676",
     contactEmail: "info@alkhudaschool.edu.pk",
     stats: {
       studentsCount: "2,500+",
