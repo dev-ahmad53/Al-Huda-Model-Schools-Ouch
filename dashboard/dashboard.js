@@ -1,4 +1,4 @@
-// Complete Admin Dashboard Logic - Al Khuda Model School & College
+// Complete Admin Dashboard Logic - Al-Huda Model Schools Ouch
 
 document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
@@ -374,7 +374,7 @@ function setupAddBoardTopperModal() {
       const photoFile = document.getElementById("topperPhotoFile");
       const defaultPhoto = "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=300";
       const photo = await readFileAsBase64(photoFile, defaultPhoto);
-      const quote = document.getElementById("topperQuote").value || "Success comes with hard work and guidance from Al Khuda faculty.";
+      const quote = document.getElementById("topperQuote").value || "Success comes with hard work and guidance from Al-Huda faculty.";
       const targetLocation = document.getElementById("topperLocationSelect").value;
 
       const newTopper = {

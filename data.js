@@ -2,7 +2,7 @@ const AK_STORAGE_KEY = "AK_SCHOOL_DATA_V2000";
 
 const DEFAULT_SCHOOL_DATA = {
   info: {
-    name: "Al Khuda Model School & College",
+    name: "Al-Huda Model Schools Ouch",
     tagline: "Empowering Minds, Shaping Leaders, Excellence in Education",
     established: "1998",
     location: "Main Campus, Education City Road",
@@ -18,7 +18,7 @@ const DEFAULT_SCHOOL_DATA = {
       name: "Prof. Abdul Wadood",
       title: "Principal & Academic Director",
       photo: "images/principal.jpeg",
-      message: "At Al Khuda Model School & College, our mission is to foster an environment where academic rigor meets character development. We strive to empower every student from Nursery to 2nd Year with critical thinking, ethical values, and technological skills necessary to excel in the modern world."
+      message: "At Al-Huda Model Schools Ouch, our mission is to foster an environment where academic rigor meets character development. We strive to empower every student from Nursery to 2nd Year with critical thinking, ethical values, and technological skills necessary to excel in the modern world."
     }
   },
 
@@ -54,7 +54,7 @@ const DEFAULT_SCHOOL_DATA = {
       grade: "A-1",
       photo: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=300",
       badge: "🥇 Gold Medalist",
-      quote: "Success comes with hard work and guidance from Al Khuda faculty."
+      quote: "Success comes with hard work and guidance from Al-Huda faculty."
     },
     {
       rank: 2,
@@ -82,7 +82,7 @@ const DEFAULT_SCHOOL_DATA = {
       grade: "A-1",
       photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=300",
       badge: "🥉 Bronze Medalist",
-      quote: "Al Khuda Model School brought out the best academic results in me."
+      quote: "Al-Huda Model Schools Ouch brought out the best academic results in me."
     }
   ],
 
@@ -100,7 +100,7 @@ const DEFAULT_SCHOOL_DATA = {
       grade: "A-1",
       photo: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=300",
       badge: "🥇 Gold Medalist",
-      quote: "Success comes with hard work and guidance from Al Khuda faculty."
+      quote: "Success comes with hard work and guidance from Al-Huda faculty."
     },
     {
       rank: 2,
@@ -128,7 +128,7 @@ const DEFAULT_SCHOOL_DATA = {
       grade: "A-1",
       photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=300",
       badge: "🥉 Bronze Medalist",
-      quote: "Al Khuda Model School brought out the best academic results in me."
+      quote: "Al-Huda Model Schools Ouch brought out the best academic results in me."
     },
     {
       rank: 4,
@@ -170,7 +170,7 @@ const DEFAULT_SCHOOL_DATA = {
       grade: "A-1",
       photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=300",
       badge: "🎖️ 1st Position 11th",
-      quote: "Preparation for entry tests starts from day one at Al Khuda."
+      quote: "Preparation for entry tests starts from day one at Al-Huda."
     },
     {
       rank: 7,
@@ -659,7 +659,7 @@ const DEFAULT_SCHOOL_DATA = {
       id: 1,
       name: "Engr. Khalid Mansoor",
       role: "Parent of Board Topper (2nd Year)",
-      comment: "Al Khuda Model College provided my son with exceptional guidance, modern science labs, and constant motivation. Securing a top board position was a dream come true!",
+      comment: "Al-Huda Model Schools Ouch provided my son with exceptional guidance, modern science labs, and constant motivation. Securing a top board position was a dream come true!",
       rating: 5,
       photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
     },
@@ -667,7 +667,7 @@ const DEFAULT_SCHOOL_DATA = {
       id: 2,
       name: "Dr. Samina Rashid",
       role: "Parent of Class 10th Student",
-      comment: "The conceptual clarity and individual attention given by teachers at Al Khuda is unparalleled. The online result portal is so convenient for parents to check progress.",
+      comment: "The conceptual clarity and individual attention given by teachers at Al-Huda is unparalleled. The online result portal is so convenient for parents to check progress.",
       rating: 5,
       photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
     },
@@ -675,7 +675,7 @@ const DEFAULT_SCHOOL_DATA = {
       id: 3,
       name: "Muhammad Usman",
       role: "Alumni - F.Sc Pre-Medical 2024",
-      comment: "Al Khuda shaped my career path. The faculty prepared us rigorously for both FBISE Board exams and medical entry tests. I am proud to be an alumnus!",
+      comment: "Al-Huda shaped my career path. The faculty prepared us rigorously for both FBISE Board exams and medical entry tests. I am proud to be an alumnus!",
       rating: 5,
       photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200"
     }
@@ -773,7 +773,7 @@ const DEFAULT_SCHOOL_DATA = {
       applyClass: "1st Year (F.Sc Pre-Medical)",
       phone: "+92 321 4567890",
       email: "shahid.m@example.com",
-      previousSchool: "Al Khuda Model School",
+      previousSchool: "Al-Huda Model Schools Ouch",
       status: "Pending Review"
     }
   ],
@@ -804,7 +804,7 @@ const DEFAULT_SCHOOL_DATA = {
       id: 2,
       date: "02 Aug 2026",
       tag: "Academic",
-      title: "Al Khuda Students Secure Top Ranks in Federal STEM Science Olympiad",
+      title: "Al-Huda Students Secure Top Ranks in Federal STEM Science Olympiad",
       summary: "Our robotics and science team bagged 1st position in the National STEM Innovation Challenge held at NUST Islamabad.",
       image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=600"
     },

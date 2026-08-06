@@ -1,4 +1,4 @@
-// Script file for Al Khuda Model School & College
+// Script file for Al-Huda Model Schools Ouch
 
 document.addEventListener("DOMContentLoaded", () => {
   // Global State & Scroll Position Variables (Declared early to prevent TDZ ReferenceErrors)
@@ -595,9 +595,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="report-card-container">
         <div class="report-header">
           <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
-            <div style="width: 48px; height: 48px; background: #0f172a; color: #fbbf24; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.4rem; box-shadow: var(--shadow-gold);">AK</div>
+            <img src="images/logo.png" alt="Al-Huda Logo" style="width: 48px; height: 48px; object-fit: contain; flex-shrink: 0;">
             <div style="text-align: left;">
-              <h1 class="report-school-title">Al Khuda Model School & College</h1>
+              <h1 class="report-school-title">Al-Huda Model Schools Ouch</h1>
               <div class="report-subtitle">Official Annual Examination Result Marksheet</div>
             </div>
           </div>
@@ -789,7 +789,7 @@ document.addEventListener("DOMContentLoaded", () => {
           applyClass,
           phone,
           email,
-          previousSchool: "Al Khuda Campus",
+          previousSchool: "Al-Huda Campus",
           status: "Pending Review"
         };
 
