@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result Portal | Al Khuda Model School & College</title>
+  <meta name="description" content="Online Student Result Portal for Al Khuda Model School & College. Search Nursery to 2nd Year results by Roll Number or Student Name.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css?v=70.0">
+</head>
+<body>
+
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-info">
+        <div class="item"><i class="fa-solid fa-phone"></i> +92 300 1234567</div>
+        <div class="item"><i class="fa-solid fa-envelope"></i> info@alkhudaschool.edu.pk</div>
+        <div class="item"><i class="fa-solid fa-location-dot"></i> Main Campus, Education City Road</div>
+      </div>
+      <div class="top-bar-social">
+        <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-badge">AK</div>
+        <div>
+          <span class="brand-name">Al Khuda</span>
+          <span class="brand-sub">Model School & College</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="toppers.html" class="nav-link">Toppers</a></li>
+        <li><a href="results.html" class="nav-link active">Results</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="academics.html" class="nav-link">Academics</a></li>
+        <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="admissions.html" class="btn btn-primary">
+          <i class="fa-solid fa-graduation-cap"></i> Admission 2026
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Main Result Section -->
+  <section class="section results-section">
+    <div class="container">
+
+      <!-- Step 1: Class Selection Grid (Visible when choosing a class) -->
+      <div id="classSelectionGridSection">
+        <div class="section-header">
+          <span class="section-tag">Step 1: Select Your Class</span>
+          <h2 class="section-title">Select Class to View Results</h2>
+          <p class="section-subtitle">Click on your respective class to view the full student result list and search by Roll No / Name</p>
+        </div>
+
+        <div class="class-grid-cards" id="classesGridContainer">
+          <!-- Populated by script.js -->
+        </div>
+      </div>
+
+      <!-- Step 2: Class Specific Results View (Shifts into view when a class is clicked) -->
+      <div id="classResultsViewSection" style="display: none;">
+        <div class="class-result-active-box">
+          <div>
+            <div class="class-result-active-title" id="activeClassTitle">
+              <i class="fa-solid fa-graduation-cap"></i> Class Results
+            </div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.3rem;">Showing official marks, percentage & grades for session 2025-26</p>
+          </div>
+
+          <button class="btn btn-secondary" id="backToClassGridBtn">
+            <i class="fa-solid fa-grid-2"></i> Select Another Class
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-filter-box">
+          <div class="search-input-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="resultSearchInput" class="search-input" placeholder="Search in this class by Roll No (e.g. 1001) or Student Name (e.g. Zainab)...">
+          </div>
+        </div>
+
+        <!-- Result Table -->
+        <div class="table-responsive">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th>Roll No</th>
+                <th>Student Name</th>
+                <th>Father Name</th>
+                <th>Class & Section</th>
+                <th>Total / Marks</th>
+                <th>Percentage</th>
+                <th>Grade</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="resultsTableBody">
+              <!-- Rendered by script.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1.2rem;">
+            <div class="logo-badge">AK</div>
+            <div>
+              <span class="brand-name" style="color: #fff;">Al Khuda</span>
+              <span class="brand-sub">Model School & College</span>
+            </div>
+          </a>
+          <p style="font-size: 0.9rem; margin-bottom: 1.5rem; max-width: 340px;">
+            A premier institution dedicated to academic brilliance, moral development, and future readiness.
+          </p>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="toppers.html">Toppers & Hall of Fame</a></li>
+            <li><a href="results.html">Result Portal</a></li>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Academics</h4>
+          <ul class="footer-links">
+            <li><a href="academics.html">Pre-Primary Wing</a></li>
+            <li><a href="academics.html">Primary & Middle Wing</a></li>
+            <li><a href="academics.html">Matriculation (Science)</a></li>
+            <li><a href="academics.html">F.Sc Pre-Medical & Pre-Eng</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Admission Cell</h4>
+          <p style="font-size: 0.88rem; margin-bottom: 1rem;">Admissions Open for Session 2026-27. Apply online today.</p>
+          <a href="admissions.html" class="btn btn-primary" style="width: 100%;">
+            Online Admission Form
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Al Khuda Model School & College. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/923001234567" target="_blank" class="floating-whatsapp" title="Contact on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Report Card / Marksheet Modal -->
+  <div class="modal-backdrop" id="reportCardModal">
+    <div class="modal-content" style="max-width: 750px;">
+      <button class="modal-close-btn" id="closeReportCardBtn"><i class="fa-solid fa-xmark"></i></button>
+
+      <div id="reportCardContainer">
+        <!-- Rendered by script.js -->
+      </div>
+
+      <div class="report-actions">
+        <button class="btn btn-secondary" onclick="window.print();">
+          <i class="fa-solid fa-print"></i> Print Marksheet
+        </button>
+        <button class="btn btn-primary" id="closeReportCardFooterBtn">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script src="data.js?v=90.0"></script>
+  <script src="script.js?v=90.0"></script>
+</body>
+</html>
