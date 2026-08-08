@@ -296,39 +296,106 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
+  // Universal Mouse Drag-to-Scroll, Mouse Wheel Scroll, & Continuous Slow Auto-Animation Engine
+  function setupUniversalMouseDragWheelAndAutoScroll(containerEl, speed = 0.5) {
+    if (!containerEl) return;
+    const wrapper = containerEl.closest(".landscape-wrapper, .class-filter-pills-wrapper, .carousel-wrapper") || containerEl;
+    if (!wrapper) return;
+
+    let isMouseDown = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+    let isUserInteracting = false;
+    let userInteractTimeout = null;
+
+    wrapper.style.cursor = "grab";
+
+    const triggerUserInteraction = (duration = 1200) => {
+      isUserInteracting = true;
+      if (userInteractTimeout) clearTimeout(userInteractTimeout);
+      userInteractTimeout = setTimeout(() => {
+        isUserInteracting = false;
+      }, duration);
+    };
+
+    // 1. Mouse Drag (Desktop Click & Drag)
+    wrapper.addEventListener("mousedown", (e) => {
+      isMouseDown = true;
+      triggerUserInteraction(30000); // Pause while holding mouse button
+      startX = e.pageX - wrapper.offsetLeft;
+      startScrollLeft = wrapper.scrollLeft;
+      wrapper.style.cursor = "grabbing";
+    });
+
+    const stopMouseDrag = () => {
+      if (isMouseDown) {
+        isMouseDown = false;
+        wrapper.style.cursor = "grab";
+        triggerUserInteraction(1000); // Resume auto-scroll 1 sec after release
+      }
+    };
+
+    wrapper.addEventListener("mouseleave", stopMouseDrag);
+    wrapper.addEventListener("mouseup", stopMouseDrag);
+
+    wrapper.addEventListener("mousemove", (e) => {
+      if (!isMouseDown) return;
+      e.preventDefault();
+      triggerUserInteraction(30000);
+      const x = e.pageX - wrapper.offsetLeft;
+      const walk = (x - startX) * 1.8;
+      wrapper.scrollLeft = startScrollLeft - walk;
+    });
+
+    // 2. Touch Swipe (Mobile Devices)
+    wrapper.addEventListener("touchstart", () => {
+      triggerUserInteraction(30000);
+    }, { passive: true });
+
+    wrapper.addEventListener("touchend", () => {
+      triggerUserInteraction(1200);
+    }, { passive: true });
+
+    // 3. Mouse Wheel Scroll (Horizontal Wheel or Touchpad)
+    wrapper.addEventListener("wheel", (e) => {
+      triggerUserInteraction(1000);
+      if (Math.abs(e.deltaY) > 0) {
+        wrapper.scrollLeft += e.deltaY * 0.85;
+      } else if (Math.abs(e.deltaX) > 0) {
+        wrapper.scrollLeft += e.deltaX * 0.85;
+      }
+    }, { passive: true });
+
+    // 4. Continuous Smooth Auto-Animation Loop
+    let currentScrollPos = wrapper.scrollLeft;
+
+    function autoScrollFrame() {
+      if (!isUserInteracting && !isMouseDown) {
+        currentScrollPos = wrapper.scrollLeft + speed; // Ultra smooth slow drift (0.55px / frame)
+        const halfWidth = wrapper.scrollWidth / 3;
+        
+        if (wrapper.scrollWidth > wrapper.clientWidth && currentScrollPos >= halfWidth * 2) {
+          currentScrollPos = halfWidth;
+        } else if (wrapper.scrollWidth > wrapper.clientWidth && currentScrollPos >= wrapper.scrollWidth - wrapper.clientWidth - 2) {
+          currentScrollPos = 0;
+        }
+        
+        wrapper.scrollLeft = currentScrollPos;
+      } else {
+        currentScrollPos = wrapper.scrollLeft;
+      }
+      
+      wrapper.autoScrollAnimFrame = requestAnimationFrame(autoScrollFrame);
+    }
+
+    if (wrapper.autoScrollAnimFrame) cancelAnimationFrame(wrapper.autoScrollAnimFrame);
+    wrapper.autoScrollAnimFrame = requestAnimationFrame(autoScrollFrame);
+  }
+
   function startContinuousHomeScroll() {
     const slider = document.getElementById("homeToppersSlider");
     if (!slider) return;
-
-    homeScrollPos = slider.scrollLeft;
-
-    const scrollStep = () => {
-      if (!isHomeSliderPaused) {
-        homeScrollPos += 1.2;
-        const halfWidth = slider.scrollWidth / 2;
-        if (homeScrollPos >= halfWidth) {
-          homeScrollPos = 0;
-        }
-        slider.scrollLeft = homeScrollPos;
-      } else {
-        homeScrollPos = slider.scrollLeft;
-      }
-      homeAnimFrameId = requestAnimationFrame(scrollStep);
-    };
-
-    if (homeAnimFrameId) cancelAnimationFrame(homeAnimFrameId);
-    homeAnimFrameId = requestAnimationFrame(scrollStep);
-
-    const homeWrapper = slider.closest(".carousel-wrapper") || slider;
-    const pauseHome = () => { isHomeSliderPaused = true; };
-    const resumeHome = () => { isHomeSliderPaused = false; };
-
-    homeWrapper.addEventListener("mouseenter", pauseHome);
-    homeWrapper.addEventListener("mouseleave", resumeHome);
-    homeWrapper.addEventListener("pointerenter", pauseHome);
-    homeWrapper.addEventListener("pointerleave", resumeHome);
-    homeWrapper.addEventListener("touchstart", pauseHome, { passive: true });
-    homeWrapper.addEventListener("touchend", resumeHome, { passive: true });
+    setupUniversalMouseDragWheelAndAutoScroll(slider, 0.65);
   }
 
   document.getElementById("homeTopperPrevBtn")?.addEventListener("click", () => {
@@ -457,83 +524,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function startContinuousPillsScroll() {
     const container = getPillsContainer();
     if (!container) return;
-
-    const wrapper = container.closest(".class-filter-pills-wrapper") || container;
-
-    // Direct multi-event tracking for 100% reliable mouse hover detection across all child elements
-    const pause = () => { isPillsHovered = true; };
-    const resume = (e) => {
-      if (e && e.relatedTarget && wrapper.contains(e.relatedTarget)) return;
-      isPillsHovered = false;
-    };
-
-    wrapper.onmouseenter = pause;
-    wrapper.onmouseover = pause;
-    wrapper.onmouseleave = () => { isPillsHovered = false; };
-    wrapper.onmouseout = resume;
-    wrapper.ontouchstart = pause;
-    wrapper.ontouchend = () => { isPillsHovered = false; };
-
-    pillsScrollPos = container.scrollLeft;
-
-    const scrollStep = () => {
-      const isHovered = isPillsHovered || wrapper.matches(":hover") || container.matches(":hover");
-      if (!isHovered && !isPillsPaused) {
-        pillsScrollPos += 0.40; // Slow, ultra-smooth continuous landscape drift
-        const halfWidth = container.scrollWidth / 3;
-        if (pillsScrollPos >= halfWidth * 2) {
-          pillsScrollPos = halfWidth; // Seamless infinite loop reset
-        }
-        container.scrollLeft = pillsScrollPos;
-      } else {
-        pillsScrollPos = container.scrollLeft;
-      }
-      pillsAnimFrameId = requestAnimationFrame(scrollStep);
-    };
-
-    if (pillsAnimFrameId) cancelAnimationFrame(pillsAnimFrameId);
-    pillsAnimFrameId = requestAnimationFrame(scrollStep);
+    setupUniversalMouseDragWheelAndAutoScroll(container, 0.45);
   }
 
   function startContinuousClassScroll() {
     const slider = getClassSliderContainer();
     if (!slider) return;
-
-    const sliderWrapper = slider.closest(".carousel-wrapper") || slider;
-
-    // Direct multi-event tracking for 100% reliable mouse hover detection across all child cards
-    const pause = () => { isClassSliderHovered = true; };
-    const resume = (e) => {
-      if (e && e.relatedTarget && sliderWrapper.contains(e.relatedTarget)) return;
-      isClassSliderHovered = false;
-    };
-
-    sliderWrapper.onmouseenter = pause;
-    sliderWrapper.onmouseover = pause;
-    sliderWrapper.onmouseleave = () => { isClassSliderHovered = false; };
-    sliderWrapper.onmouseout = resume;
-    sliderWrapper.ontouchstart = pause;
-    sliderWrapper.ontouchend = () => { isClassSliderHovered = false; };
-
-    classScrollPos = slider.scrollLeft;
-
-    const scrollStep = () => {
-      const isHovered = isClassSliderHovered || sliderWrapper.matches(":hover") || slider.matches(":hover");
-      if (!isHovered && !isClassSliderPaused) {
-        classScrollPos += 0.45; // Slow, ultra-smooth continuous landscape drift
-        const halfWidth = slider.scrollWidth / 3;
-        if (classScrollPos >= halfWidth * 2) {
-          classScrollPos = halfWidth; // Seamless infinite loop reset
-        }
-        slider.scrollLeft = classScrollPos;
-      } else {
-        classScrollPos = slider.scrollLeft;
-      }
-      classAnimFrameId = requestAnimationFrame(scrollStep);
-    };
-
-    if (classAnimFrameId) cancelAnimationFrame(classAnimFrameId);
-    classAnimFrameId = requestAnimationFrame(scrollStep);
+    setupUniversalMouseDragWheelAndAutoScroll(slider, 0.55);
   }
 
   // Controls for Class Landscape Slider
@@ -863,3 +860,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
   }
 });
+
+// Mobile Footer Accordion Toggle Handler
+window.toggleFooterDropdown = function(element) {
+  if (window.innerWidth > 768) return;
+  const accordion = element ? element.closest(".footer-accordion") : null;
+  if (accordion) {
+    accordion.classList.toggle("open");
+  }
+};

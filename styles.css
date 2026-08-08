@@ -828,26 +828,15 @@ button {
   padding: 0.5rem 0;
 }
 
-/* Smooth white gradient edge mask to eliminate sharp side cuts on cards */
+/* White gradient edge mask removed for crisp clear card visibility */
 .carousel-wrapper::before,
-.carousel-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 90px;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.carousel-wrapper::before {
-  left: 0;
-  background: linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-.carousel-wrapper::after {
-  right: 0;
-  background: linear-gradient(to left, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+.carousel-wrapper::after,
+.landscape-wrapper::before,
+.landscape-wrapper::after,
+.class-filter-pills-wrapper::before,
+.class-filter-pills-wrapper::after {
+  display: none !important;
+  content: none !important;
 }
 
 .carousel-controls {
@@ -907,46 +896,52 @@ button {
 /* ==========================================================================
    PURE HARDWARE-ACCELERATED GPU MARQUEE ANIMATION FOR LANDSCAPE SHOWCASE
    ========================================================================== */
-@keyframes marqueeSlow {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
+.landscape-wrapper,
+.class-filter-pills-wrapper,
+.carousel-wrapper {
+  width: 100% !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  padding: 0.5rem 0 !important;
+  position: relative !important;
+  scrollbar-width: thin;
+}
+
+.landscape-wrapper:active,
+.class-filter-pills-wrapper:active,
+.carousel-wrapper:active {
+  cursor: grabbing;
+}
+
+.landscape-wrapper::-webkit-scrollbar,
+.class-filter-pills-wrapper::-webkit-scrollbar,
+.carousel-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.landscape-wrapper::-webkit-scrollbar-thumb,
+.class-filter-pills-wrapper::-webkit-scrollbar-thumb,
+.carousel-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(217, 119, 6, 0.35);
+  border-radius: 999px;
 }
 
 .landscape-scroll-container {
   display: flex !important;
   justify-content: flex-start !important;
   gap: 2rem !important;
-  overflow-x: visible !important;
-  position: relative !important;
   padding: 1.2rem 0.5rem !important;
   width: max-content !important;
-  animation: marqueeSlow 110s linear infinite !important;
-  will-change: transform;
-}
-
-.landscape-scroll-container:hover,
-.landscape-scroll-container.is-paused {
-  animation-play-state: paused !important;
 }
 
 .class-filter-pills {
   display: flex !important;
   gap: 0.8rem !important;
-  overflow-x: visible !important;
-  position: relative !important;
   padding: 0.5rem 0.5rem 1rem 0.5rem !important;
   width: max-content !important;
-  animation: marqueeSlow 90s linear infinite !important;
-  will-change: transform;
-}
-
-.class-filter-pills:hover,
-.class-filter-pills.is-paused {
-  animation-play-state: paused !important;
 }
 
 /* ==========================================================================
@@ -1544,11 +1539,22 @@ button {
   margin-bottom: 3rem;
 }
 
-.footer-col h4 {
+.footer-col h4,
+.footer-col-title {
   font-family: var(--font-heading);
   color: #ffffff;
   font-size: 1.15rem;
   margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-chevron {
+  display: none;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+  color: var(--accent-gold);
 }
 
 .footer-links {
@@ -1957,6 +1963,74 @@ button {
     max-width: 100vw !important;
   }
 
+  /* Mobile Footer Accordion Dropdown Styles */
+  .footer {
+    text-align: center !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+    text-align: center !important;
+  }
+
+  .footer .brand-logo {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .footer p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .footer-accordion {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+    text-align: center !important;
+  }
+
+  .footer-col-title {
+    cursor: pointer !important;
+    margin-bottom: 0.4rem !important;
+    padding: 0.6rem 0 !important;
+    user-select: none;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.6rem !important;
+    text-align: center !important;
+  }
+
+  .footer-chevron {
+    display: inline-block !important;
+  }
+
+  .footer-accordion.open .footer-chevron {
+    transform: rotate(180deg);
+  }
+
+  .footer-accordion .footer-links {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-left: 0 !important;
+    text-align: center !important;
+  }
+
+  .footer-accordion.open .footer-links {
+    max-height: 300px;
+    opacity: 1;
+    margin-top: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-links li {
+    text-align: center !important;
+  }
+
   .hero {
     padding-top: 1.8rem !important;
     padding-bottom: 2.2rem !important;
@@ -2076,8 +2150,20 @@ button {
 
   /* Overall Toppers Grid on Mobile */
   .overall-grid {
+    display: grid !important;
     grid-template-columns: 1fr !important;
-    gap: 1.2rem !important;
+    justify-items: center !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+
+  .overall-grid .topper-card {
+    width: 100% !important;
+    max-width: 380px !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
   }
 
   /* Footer Grid on Mobile */
