@@ -40,9 +40,35 @@ function initNavigation() {
       if (pageTitle) {
         pageTitle.innerText = item.querySelector("span").innerText;
       }
+
+      // Auto-close sidebar on mobile view
+      if (window.innerWidth <= 992) {
+        const sidebar = document.getElementById("adminSidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        if (sidebar && sidebar.classList.contains("active")) {
+          sidebar.classList.remove("active");
+          if (overlay) overlay.classList.remove("active");
+        }
+      }
     });
   });
 }
+
+// Mobile Sidebar Toggle
+window.toggleAdminMobileSidebar = function() {
+  const sidebar = document.getElementById("adminSidebar");
+  const overlay = document.getElementById("sidebarOverlay");
+  if (sidebar && overlay) {
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+  }
+};
+
+// Tab Switch Helper
+window.switchAdminTab = function(tabId) {
+  const menuItem = document.querySelector(`.menu-item[data-tab='${tabId}']`);
+  if (menuItem) menuItem.click();
+};
 
 // 1. OVERVIEW & STATS
 function renderOverviewStats() {
@@ -51,7 +77,7 @@ function renderOverviewStats() {
 
   const stats = SCHOOL_DATA.info.stats;
   container.innerHTML = `
-    <div class="stat-card">
+    <div class="stat-card" style="cursor: pointer;" onclick="switchAdminTab('tab-results')" title="Click to View Exam Results">
       <div class="stat-info">
         <h3>${stats.studentsCount}</h3>
         <p>Total Enrolled Students</p>
@@ -59,7 +85,7 @@ function renderOverviewStats() {
       <div class="stat-icon icon-students"><i class="fa-solid fa-user-graduate"></i></div>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card" style="cursor: pointer;" onclick="switchAdminTab('tab-results')" title="Click to View Exam Results">
       <div class="stat-info">
         <h3>${stats.passPercentage}</h3>
         <p>Overall Pass Percentage</p>
@@ -67,7 +93,7 @@ function renderOverviewStats() {
       <div class="stat-icon icon-pass"><i class="fa-solid fa-chart-line"></i></div>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card" style="cursor: pointer;" onclick="switchAdminTab('tab-toppers')" title="Click to View Position Holders">
       <div class="stat-info">
         <h3>${stats.boardPositions}</h3>
         <p>Board Position Holders</p>
@@ -75,10 +101,10 @@ function renderOverviewStats() {
       <div class="stat-icon icon-toppers"><i class="fa-solid fa-award"></i></div>
     </div>
 
-    <div class="stat-card">
+    <div class="stat-card" style="cursor: pointer;" onclick="switchAdminTab('tab-settings')" title="Click to Edit Settings">
       <div class="stat-info">
         <h3>${stats.expertFaculty}</h3>
-        <p>Expert Faculty Staff</p>
+        <p>Expert Faculty Members</p>
       </div>
       <div class="stat-icon icon-faculty"><i class="fa-solid fa-chalkboard-user"></i></div>
     </div>

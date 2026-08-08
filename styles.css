@@ -907,7 +907,8 @@ button {
   -webkit-user-select: none;
   padding: 0.5rem 0 !important;
   position: relative !important;
-  scrollbar-width: thin;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 .landscape-wrapper:active,
@@ -919,14 +920,9 @@ button {
 .landscape-wrapper::-webkit-scrollbar,
 .class-filter-pills-wrapper::-webkit-scrollbar,
 .carousel-wrapper::-webkit-scrollbar {
-  height: 6px;
-}
-
-.landscape-wrapper::-webkit-scrollbar-thumb,
-.class-filter-pills-wrapper::-webkit-scrollbar-thumb,
-.carousel-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(217, 119, 6, 0.35);
-  border-radius: 999px;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .landscape-scroll-container {

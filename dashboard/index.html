@@ -11,10 +11,13 @@
 </head>
 <body>
 
+  <!-- Sidebar Overlay for Mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleAdminMobileSidebar()"></div>
+
   <!-- Admin Sidebar -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="adminSidebar">
     <div class="sidebar-header">
-      <div class="logo-icon">AK</div>
+      <img src="../images/logo.png" alt="Al-Huda Logo" class="sidebar-logo-img">
       <div class="logo-text">
         <h2>Al-Huda Portal</h2>
         <span>Admin Control Hub</span>
@@ -22,10 +25,13 @@
     </div>
 
     <nav class="sidebar-menu">
+      <div class="sidebar-section-title">MAIN</div>
       <div class="menu-item active" data-tab="tab-overview">
         <i class="fa-solid fa-chart-pie"></i>
-        <span>Overview & Stats</span>
+        <span>Overview & Dashboard</span>
       </div>
+
+      <div class="sidebar-section-title">ACADEMICS & EXAMS</div>
       <div class="menu-item" data-tab="tab-results">
         <i class="fa-solid fa-graduation-cap"></i>
         <span>Student Exam Results</span>
@@ -34,6 +40,8 @@
         <i class="fa-solid fa-trophy"></i>
         <span>Board Position Holders</span>
       </div>
+
+      <div class="sidebar-section-title">COMMUNICATIONS & MEDIA</div>
       <div class="menu-item" data-tab="tab-notices">
         <i class="fa-solid fa-bullhorn"></i>
         <span>Notice Board</span>
@@ -50,6 +58,8 @@
         <i class="fa-solid fa-comments"></i>
         <span>Parent Testimonials</span>
       </div>
+
+      <div class="sidebar-section-title">INQUIRIES & MESSAGES</div>
       <div class="menu-item" data-tab="tab-admissions-submissions">
         <i class="fa-solid fa-user-plus"></i>
         <span>Online Admissions</span>
@@ -58,6 +68,8 @@
         <i class="fa-solid fa-envelope"></i>
         <span>Contact Messages</span>
       </div>
+
+      <div class="sidebar-section-title">SETTINGS</div>
       <div class="menu-item" data-tab="tab-settings">
         <i class="fa-solid fa-sliders"></i>
         <span>School Info & Settings</span>
@@ -76,16 +88,26 @@
     
     <!-- Top Navigation Bar -->
     <header class="top-nav">
-      <h1 class="page-title" id="pageTitle">Overview & Stats</h1>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <button class="mobile-toggle-btn" id="adminMobileMenuBtn" onclick="toggleAdminMobileSidebar()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <h1 class="page-title" id="pageTitle">Overview & Dashboard</h1>
+      </div>
 
-      <div class="user-profile">
-        <button class="btn-action btn-delete" style="padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="resetSchoolDataToDefault()" title="Reset to Factory Defaults">
+      <div class="top-nav-actions">
+        <button class="btn-primary-admin" onclick="openAddStudentModal()" style="font-size: 0.82rem; padding: 0.5rem 0.9rem;">
+          <i class="fa-solid fa-plus"></i> Add Student Result
+        </button>
+        <button class="btn-action btn-delete" style="padding: 0.5rem 0.9rem; font-size: 0.8rem;" onclick="resetSchoolDataToDefault()" title="Reset to Factory Defaults">
           <i class="fa-solid fa-rotate-left"></i> Reset Defaults
         </button>
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Admin" class="user-avatar">
-        <div class="user-info">
-          <h4>Principal Office</h4>
-          <p>Super Administrator</p>
+        <div class="user-profile">
+          <img src="../images/principal.jpeg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200';" alt="Principal" class="user-avatar">
+          <div class="user-info">
+            <h4>Prof. Abdul Wadood</h4>
+            <p>Principal & Admin</p>
+          </div>
         </div>
       </div>
     </header>
